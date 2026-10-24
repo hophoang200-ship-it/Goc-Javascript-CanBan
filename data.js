@@ -3,7 +3,7 @@ const CHU_DE_KIEN_THUC = [
     id: "bien",
     ten: "Biến: var, let và const",
     nhom: "Nền tảng",
-    moTa: "Biến dùng để đặt tên và quản lý giá trị trong chương trình. Trong JavaScript hiện đại, quy chuẩn là ưu tiên dùng const, dùng let khi cần gán lại giá trị, còn var nên tránh vì có phạm vi hàm và dễ dẫn đến lỗi khó kiểm soát.",
+    moTa: "Biến dùng để đặt tên và quản lý giá trị trong chương trình. Trong JavaScript hiện đại, quy chuẩn là ưu tiên dùng const, dùng let khi cần gán lại giá trị, và tránh dùng var trong mã nguồn mới.",
     yChinh: [
       "var: Từ khóa khai báo biến cũ (function-scoped), bị hoisting, dễ gây ra lỗi khó kiểm soát.",
       "let: Khai báo biến có phạm vi khối (block-scoped), có thể gán lại giá trị mới.",
@@ -103,15 +103,15 @@ const TU_DIEN_JAVASCRIPT = [
 
 const CAU_HOI_TRAC_NGHIEM = [
   { cau: "Từ khóa nào nên được ưu tiên khi giá trị không cần gán lại?", luaChon: ["var", "let", "const"], dapAn: 2, giaiThich: "const giúp tránh vô tình gán lại tên biến." },
-  { cau: "Phương thức nào biến đổi từng phần tử và trả về một mảng mới?", luaChon: ["map()", "filter()", "find()"], dapAn: 0, giaiThich: "map() áp dụng hàm lên từng phần tử và trả về mảng mới." },
-  { cau: "Cách kiểm tra một giá trị có phải NaN chính xác là gì?", luaChon: ["x === NaN", "Number.isNaN(x)", "typeof x === 'NaN'"], dapAn: 1, giaiThich: "NaN không bằng chính nó; Number.isNaN(x) là cách kiểm tra chuẩn xác." },
-  { cau: "Phương thức nào đăng ký trình xử lý sự kiện chuẩn của DOM?", luaChon: ["onClickNow()", "addEventListener()", "queryEvent()"], dapAn: 1, giaiThich: "addEventListener() là cách chuẩn để lắng nghe sự kiện trong DOM." },
-  { cau: "filter() trả về điều gì?", luaChon: ["Phần tử đầu tiên", "Mảng các phần tử thỏa điều kiện", "Số phần tử"], dapAn: 1, giaiThich: "filter() tạo ra mảng mới chỉ chứa các phần tử thoả điều kiện." },
-  { cau: "Thuộc tính nào nên dùng để cập nhật văn bản thuần trên trang?", luaChon: ["textContent", "innerHTML", "outerScript"], dapAn: 0, giaiThich: "textContent cập nhật văn bản an toàn và phù hợp cho nội dung plain text." }
+  { cau: "Phương thức nào biến đổi từng phần tử và trả về một mảng mới?", luaChon: ["map()", "filter()", "find()"], dapAn: 0, giaiThich: "map() áp dụng hàm lên từng phần tử và tạo mảng kết quả cùng độ dài." },
+  { cau: "Cách kiểm tra một giá trị có phải NaN chính xác là gì?", luaChon: ["x === NaN", "Number.isNaN(x)", "typeof x === 'NaN'"], dapAn: 1, giaiThich: "NaN không bằng chính nó; dùng Number.isNaN(x)." },
+  { cau: "Phương thức nào đăng ký trình xử lý sự kiện chuẩn của DOM?", luaChon: ["onClickNow()", "addEventListener()", "queryEvent()"], dapAn: 1, giaiThich: "addEventListener() gắn hàm xử lý vào một loại sự kiện." },
+  { cau: "filter() trả về điều gì?", luaChon: ["Phần tử đầu tiên", "Mảng các phần tử thỏa điều kiện", "Số phần tử"], dapAn: 1, giaiThich: "filter() tạo mảng mới gồm những phần tử thỏa điều kiện." },
+  { cau: "Thuộc tính nào nên dùng để cập nhật văn bản thuần trên trang?", luaChon: ["textContent", "innerHTML", "outerScript"], dapAn: 0, giaiThich: "textContent cập nhật văn bản mà không diễn giải chuỗi thành HTML." }
 ];
 
 const BAI_LUYEN_CODE = [
-  { de: "Khai báo hằng số ten có giá trị chuỗi 'Lan' bằng const.", dapAn: "const ten = 'Lan';", goiY: "Bắt đầu bằng const, sau đó là tên biến ten và giá trị chuỗi trong dấu nháy đơn." },
+  { de: "Khai báo hằng số ten có giá trị chuỗi 'Lan' bằng const.", dapAn: "const ten = 'Lan';", goiY: "Bắt đầu bằng const, sau đó là tên biến ten và giá trị chuỗi trong dấu nháy." },
   { de: "Tạo hàm mũi tên congHai nhận n và trả về n * 2.", dapAn: "const congHai = (n) => n * 2;", goiY: "Dùng const, dấu =, tham số trong ngoặc và mũi tên =>." },
   { de: "Dùng filter để lấy số lớn hơn 5 từ mảng cacSo.", dapAn: "const soLon = cacSo.filter((so) => so > 5);", goiY: "filter nhận một hàm mũi tên và điều kiện so > 5." },
   { de: "Chọn phần tử có id ket-qua bằng querySelector.", dapAn: "const ketQua = document.querySelector('#ket-qua');", goiY: "Bộ chọn id trong CSS cần có dấu #." },
@@ -119,48 +119,38 @@ const BAI_LUYEN_CODE = [
   { de: "In chuỗi 'Xin chào' ra bảng điều khiển bằng console.log.", dapAn: "console.log('Xin chào');", goiY: "Gọi console.log và đặt chuỗi trong dấu nháy." }
 ];
 
-function escapeHtml(value = "") {
-  return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/\"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
 // Render danh sách kiến thức ra giao diện trang
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector('#danh-sach-kien-thuc');
-
   if (container) {
     container.innerHTML = CHU_DE_KIEN_THUC.map(item => `
       <div class="col-md-4">
         <article class="card the">
           <div class="card-body d-flex flex-column">
-            <span class="the-nhan mb-2 align-self-start">${escapeHtml(item.nhom)}</span>
-            <h3 class="card-title h5"><strong>${escapeHtml(item.ten)}</strong></h3>
-            <p class="card-text">${escapeHtml(item.moTa)}</p>
-
-            <div class="chi-tiet-noi-dung-an" id="noi-dung-${escapeHtml(item.id)}">
-              <p class="mb-2"><strong>Mô tả chi tiết:</strong> ${escapeHtml(item.moTa)}</p>
+            <span class="the-nhan mb-2 align-self-start">${item.nhom}</span>
+            <h3 class="card-title h5"><strong>${item.ten}</strong></h3>
+            <!-- Hiển thị nội dung khái niệm đầy đủ (thay vì chỉ tóm tắt ngắn) ngay dưới tiêu đề card -->
+            <p class="card-text">${item.moTa}</p>
+            
+            <!-- Phần ý chi tiết và ví dụ mã nằm ẩn để hiện trong modal khi bấm nút -->
+            <div class="chi-tiet-noi-dung-an" id="noi-dung-${item.id}">
+              <p class="mb-2"><strong>Mô tả chi tiết:</strong> ${item.moTa}</p>
               <p class="mb-1"><strong>Các điểm cốt lõi cần nhớ:</strong></p>
               <ul class="mb-3">
                 ${item.yChinh.map(y => {
                   const viTriHaiCham = y.indexOf(':');
-                  if (viTriHaiCham === -1) return `<li>${escapeHtml(y)}</li>`;
-                  const key = escapeHtml(y.slice(0, viTriHaiCham + 1));
-                  const value = escapeHtml(y.slice(viTriHaiCham + 1));
-                  return `<li><strong>${key}</strong>${value}</li>`;
+                  if (viTriHaiCham === -1) return `<li>${y}</li>`;
+                  return `<li><strong>${y.slice(0, viTriHaiCham + 1)}</strong>${y.slice(viTriHaiCham + 1)}</li>`;
                 }).join('')}
               </ul>
               <p class="mb-1"><strong>Ví dụ mã minh họa:</strong></p>
               <div class="p-2 rounded" style="background: #0b1727; color: #dce8f5; font-family: var(--font-code); font-size: 0.88rem;">
-                <code>${escapeHtml(item.viDu).replace(/\n/g, '<br>')}</code>
+                <code>${item.viDu.replace(/\n/g, '<br>')}</code>
               </div>
             </div>
 
             <div class="mt-auto pt-3">
-              <button type="button" class="btn btn-xanh w-100 btn-xem-chi-tiet" data-id="${escapeHtml(item.id)}" data-title="${escapeHtml(item.ten)}">
+              <button type="button" class="btn btn-xanh w-100 btn-xem-chi-tiet" data-id="${item.id}" data-title="${item.ten}">
                 Xem nội dung chi tiết
               </button>
             </div>
@@ -170,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `).join('');
   }
 
+  // Tạo sẵn khung Modal hiển thị nội dung chi tiết dạng nền đen xám, font chữ thường
   if (!document.querySelector('#modalChiTietKienThuc')) {
     const modalHTML = `
       <div class="modal fade" id="modalChiTietKienThuc" tabindex="-1" aria-hidden="true">
@@ -192,25 +183,21 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
   }
 
+  // Lắng nghe sự kiện click nút Xem nội dung chi tiết
   document.addEventListener('click', function(e) {
     const btn = e.target.closest('.btn-xem-chi-tiet');
     if (!btn) return;
-
+    
     const id = btn.getAttribute('data-id');
     const title = btn.getAttribute('data-title');
     const hiddenContentEl = document.querySelector(`#noi-dung-${id}`);
-    const modalTitle = document.querySelector('#modalChiTietTitle');
-    const modalBody = document.querySelector('#modalChiTietBody');
-    const modalElement = document.querySelector('#modalChiTietKienThuc');
-
-    if (hiddenContentEl && modalTitle && modalBody && modalElement) {
-      modalTitle.textContent = title || 'Chi tiết chủ đề';
-      modalBody.innerHTML = hiddenContentEl.innerHTML;
-
-      if (window.bootstrap && bootstrap.Modal) {
-        const myModal = new bootstrap.Modal(modalElement);
-        myModal.show();
-      }
+    
+    if (hiddenContentEl) {
+      document.querySelector('#modalChiTietTitle').textContent = title;
+      document.querySelector('#modalChiTietBody').innerHTML = hiddenContentEl.innerHTML;
+      
+      const myModal = new bootstrap.Modal(document.querySelector('#modalChiTietKienThuc'));
+      myModal.show();
     }
   });
 });
